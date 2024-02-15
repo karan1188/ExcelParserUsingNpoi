@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "File Process";
+}
+ 
+
+<form method="post" enctype="multipart/form-data" asp-area="FileProcessor" asp-controller="ExcelToText" asp-action="UploadAndConvert">
+    <div class="form-group">
+        <label for="file">Choose Excel File:</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload and Convert</button>
+</form>
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger mt-3">@ViewBag.ErrorMessage</div>
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success mt-3">
+        @ViewBag.SuccessMessage
+        <br />
+        <a asp-action="Download" class="btn btn-secondary mt-2">Download Text File</a>
+    </div>
+}
